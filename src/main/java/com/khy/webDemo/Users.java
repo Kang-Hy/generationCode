@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.khy.web;
+package com.khy.webDemo;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
-public class User {
+public class Users {
 
     private String name;
 
