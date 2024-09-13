@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * @author kanghaiyang
@@ -25,16 +26,22 @@ public class CodeGeneratorTest {
 
     //一堆代码写到一个模块里面
     private static void generate() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("请输入项目绝对路径:");
+        String absolutePath = scan.nextLine();
+        System.out.println("请输入模块名:");
+        String moduleNickName = scan.nextLine();
+
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig((scanner, builder) -> builder
                         .author("khy")
-                        .outputDir(scanner.apply("请输入输出路径？") + "/src/main/java")
+                        .outputDir(absolutePath + "/src/main/java")//.outputDir(scanner.apply("请输入输出路径？") + "/src/main/java")
                         .commentDate("yyyy-MM-dd")
                         .disableOpenDir()
                 )
                 .packageConfig((scanner, builder) -> builder
                         .parent(PARENTPACKAGE)
-                        .moduleName(scanner.apply("请输入模块名？"))
+                                .moduleName(moduleNickName)
                         //包名
                         .controller("controller")
                         .service("service")
@@ -42,11 +49,11 @@ public class CodeGeneratorTest {
                         .mapper("mapper")
                         .entity("entity")
                         .xml("mappers")
-                        //自定义输出位置，没有自定义的就输出到.outputDir(scanner.apply("请输入输出路径？") + "/src/main/java")下的/parent/moduleName
+                                //自定义.xml输出位置，没有自定义的就输出到.outputDir(scanner.apply("请输入输出路径？") + "/src/main/java")下的/parent/moduleName
                         .pathInfo(new HashMap<OutputFile, String>() {{
-                            put(OutputFile.xml, "src/main/resources/mapper/" + scanner.apply("请输入.xml放到resources/mapper哪下面哪个包里（模块名）？"));
-                            //指定了模块名又自定义输出位置要修改模板package --这里指定了锁有entity输出到指定文件夹，就要修改entity的模板
-                            // put(OutputFile.entity, "src/main/java/com/khy/entity");
+                            put(OutputFile.xml, absolutePath + "/src/main/resources/mapper/" + moduleNickName);
+                            //指定了模块名又自定义输出位置要修改模板package --这里如果自定义了所有entity输出到指定文件夹，就要修改entity的模板
+//                            put(OutputFile.entity, absolutePath+"/src/main/java/"+PARENTPATH+"/entity");
                         }})
                 )
                 .strategyConfig((scanner, builder) -> builder
@@ -65,14 +72,18 @@ public class CodeGeneratorTest {
                 )
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();
+        scan.close();
     }
 
     //control写到一堆 service写到一堆
     private static void generate2() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("请输入项目绝对路径:");
+        String absolutePath = scan.nextLine();
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig((scanner, builder) -> builder
                         .author("khy")
-                        .outputDir(scanner.apply("请输入输出路径？"))
+                        .outputDir(absolutePath)
                         .commentDate("yyyy-MM-dd")
                         .disableOpenDir()
                 )
@@ -86,12 +97,12 @@ public class CodeGeneratorTest {
                         .entity("entity")
                         .xml("mappers")
                         .pathInfo(new HashMap<OutputFile, String>() {{
-                            put(OutputFile.xml, "src/main/resources/mapper");
-                            put(OutputFile.entity, "src/main/java/" + PARENTPATH + "/entity");
-                            put(OutputFile.mapper, "src/main/java/" + PARENTPATH + "/mapper");
-                            put(OutputFile.service, "src/main/java/" + PARENTPATH + "/service");
-                            put(OutputFile.serviceImpl, "src/main/java/" + PARENTPATH + "/service/serviceImpl");
-                            put(OutputFile.controller, "src/main/java/" + PARENTPATH + "/controller");
+                            put(OutputFile.xml, absolutePath + "/src/main/resources/mapper");
+                            put(OutputFile.entity, absolutePath + "/src/main/java/" + PARENTPATH + "/entity");
+                            put(OutputFile.mapper, absolutePath + "/src/main/java/" + PARENTPATH + "/mapper");
+                            put(OutputFile.service, absolutePath + "/src/main/java/" + PARENTPATH + "/service");
+                            put(OutputFile.serviceImpl, absolutePath + "/src/main/java/" + PARENTPATH + "/service/serviceImpl");
+                            put(OutputFile.controller, absolutePath + "/src/main/java/" + PARENTPATH + "/controller");
                         }})
                 )
                 .strategyConfig((scanner, builder) -> builder
@@ -110,6 +121,7 @@ public class CodeGeneratorTest {
                 )
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();
+        scan.close();
     }
 
 
