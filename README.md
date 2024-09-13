@@ -1,0 +1,2 @@
+# generationCode
+mybatisPlus generation
