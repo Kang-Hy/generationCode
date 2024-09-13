@@ -9,9 +9,7 @@ import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
 
 /**
-* <p>
-    * ${table.comment!} 服务实现类
-    * </p>
+* ${table.serviceImplName} 实现类
 *
 * @author ${author}
 * @since ${date}

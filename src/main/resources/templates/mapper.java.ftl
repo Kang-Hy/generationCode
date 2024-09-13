@@ -7,9 +7,7 @@ import ${superMapperClassPackage};
 </#if>
 
 /**
-* <p>
-    * ${table.comment!} Mapper 接口
-    * </p>
+* ${table.mapperName} Mapper 接口
 *
 * @author ${author}
 * @since ${date}

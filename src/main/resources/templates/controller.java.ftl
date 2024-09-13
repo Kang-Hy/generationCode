@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 </#if>
 
 /**
-* <p>
-    * ${table.comment!} 前端控制器
-    * </p>
+* ${table.controllerName}
 *
 * @author ${author}
 * @since ${date}

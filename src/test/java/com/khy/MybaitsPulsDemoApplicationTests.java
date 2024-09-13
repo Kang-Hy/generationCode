@@ -20,7 +20,7 @@ class MybaitsPulsDemoApplicationTests {
                     builder.parent("com.khy.user") // 设置父包名
                             .entity("model") // 设置实体类包名
                             .mapper("dao") // 设置 Mapper 接口包名
-                            .service("service") // 设置 Service 接口包名
+                            .service("com/khy/service") // 设置 Service 接口包名
                             .serviceImpl("service.impl") // 设置 Service 实现类包名
                             .xml("mappers"); // 设置 Mapper XML 文件包名
                 })
@@ -50,9 +50,9 @@ class MybaitsPulsDemoApplicationTests {
                 )
                 .packageConfig((scanner, builder) -> builder
                         .parent("com.khy" + scanner.apply("请输入包名？"))
-                        .entity("entity")
+                        .entity("com/khy/entity")
                         .mapper("mapper")
-                        .service("service")
+                        .service("com/khy/service")
                         .serviceImpl("service.impl")
                         .xml("mapper.xml")
                 )
