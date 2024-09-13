@@ -20,8 +20,8 @@ public class CodeGeneratorTest {
     private static final String PARENTPATH = PARENTPACKAGE.replace(".", "/");
 
     public static void main(String[] args) {
-        generate();
-//        generate2();
+//        generate();
+        generate2();
     }
 
     //一堆代码写到一个模块里面
